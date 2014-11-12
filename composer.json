@@ -1,0 +1,25 @@
+{
+    "name": "buttress/irc",
+    "description": "IRC Client framework",
+    "keywords": ["IRC", "Framework", "IRC Client"],
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Korvin Szanto",
+            "email": "korvinszanto@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Buttress\\IRC\\": "src/Buttress/IRC/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "psr/log": "1.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}
