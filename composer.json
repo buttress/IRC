@@ -1,7 +1,11 @@
 {
     "name": "buttress/irc",
     "description": "IRC Client framework",
-    "keywords": ["IRC", "Framework", "IRC Client"],
+    "keywords": [
+        "IRC",
+        "Framework",
+        "IRC Client"
+    ],
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [

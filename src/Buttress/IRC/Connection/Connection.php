@@ -3,7 +3,6 @@ namespace Buttress\IRC\Connection;
 
 use Buttress\IRC\Action\ActionManagerInterface;
 use Buttress\IRC\Message\MessageInterface;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 

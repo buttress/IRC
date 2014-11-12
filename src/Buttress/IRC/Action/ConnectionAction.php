@@ -5,13 +5,13 @@ use Buttress\IRC\Connection\ConnectionInterface;
 use Buttress\IRC\Message\GenericMessage;
 use Buttress\IRC\Message\MessageInterface;
 
-class ConnectionAction implements ActionInterface {
+class ConnectionAction implements ActionInterface
+{
 
     protected $nick;
     protected $channel;
     protected $loginName;
     protected $realName;
-
 
     public function __construct($nick, $channel, $login_name = "buttress-irc", $real_name = "buttress-irc")
     {
@@ -31,12 +31,13 @@ class ConnectionAction implements ActionInterface {
     {
         $nick_message = new GenericMessage('NICK', '', array($this->nick));
 
-        $user_message = new GenericMessage('USER', '', array(
-            $this->loginName,
-            'Host',
-            'Server',
-            $this->realName
-        ));
+        $user_message = new GenericMessage(
+            'USER', '', array(
+                $this->loginName,
+                'Host',
+                'Server',
+                $this->realName
+            ));
 
         $join_message = new GenericMessage('JOIN', '', array($this->channel));
 

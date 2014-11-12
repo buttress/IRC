@@ -8,6 +8,7 @@ interface ActionManagerInterface
 
     /**
      * Add an Action handler against a command
+     *
      * @param string          $command [\*a-z] "*" for all
      * @param ActionInterface $action
      * @return void
