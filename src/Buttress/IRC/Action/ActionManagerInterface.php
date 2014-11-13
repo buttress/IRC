@@ -24,7 +24,9 @@ interface ActionManagerInterface
     public function handleConnect(ConnectionInterface $connection);
 
     /**
-     * @return void
+     * @param ConnectionInterface $connection
+     * @param string              $string
+     * @return mixed
      */
     public function handleRaw(ConnectionInterface $connection, $string);
 

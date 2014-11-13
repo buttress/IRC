@@ -45,6 +45,11 @@ class ActionManager implements ActionManagerInterface
         }
     }
 
+    /**
+     * @param ConnectionInterface $connection
+     * @param string              $string
+     * @return void
+     */
     public function handleRaw(ConnectionInterface $connection, $string)
     {
         $message = $this->factory->getMessageFromRaw($string);
