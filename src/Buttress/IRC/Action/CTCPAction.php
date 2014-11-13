@@ -8,13 +8,13 @@
 
 namespace Buttress\IRC\Action;
 
-
 use Buttress\IRC\Connection\ConnectionInterface;
 use Buttress\IRC\Message\GenericMessage;
 use Buttress\IRC\Message\MessageInterface;
 use Buttress\IRC\Message\PrivmsgMessage;
 
-class CTCPAction implements ActionInterface {
+class CTCPAction implements ActionInterface
+{
 
     protected $version;
 
@@ -47,25 +47,27 @@ class CTCPAction implements ActionInterface {
             if (substr($string, 0, 1) === "\001") {
                 $string = trim($string, " \001\n\t");
 
-                list($type, $string) = array_pad(explode(' ', $string, 2), 2, '');
+                list($type,) = array_pad(explode(' ', $string, 2), 2, '');
                 list($nick, $user, $host) = $message->getUser();
 
                 $message->getConnection()->log("CTCP \"{$type}\" from {$nick}!{$user}@{$host}", array($message));
 
+                $params = array();
                 switch ($type) {
                     case 'VERSION':
-                        $response = new GenericMessage('notice', '', array($nick, "\001VERSION {$this->version}\001"));
-                        $message->getConnection()->sendMessage($response);
+                        $params = array($nick, "\001VERSION {$this->version}\001");
                         break;
                     case 'PING':
-                        $response = new GenericMessage('notice', '', array($nick, $message->getMessage()));
-                        $message->getConnection()->sendMessage($response);
+                        $params = array($nick, $message->getMessage());
                         break;
                     case 'TIME':
                         $time = date(DATE_RFC1123);
-                        $response = new GenericMessage('notice', '', array($nick, "\001TIME {$time}\001"));
-                        $message->getConnection()->sendMessage($response);
+                        $params = array($nick, "\001TIME {$time}\001");
                         break;
+                }
+                if ($params) {
+                    $response = new GenericMessage('notice', '', $params);
+                    $message->getConnection()->sendMessage($response);
                 }
             }
         }

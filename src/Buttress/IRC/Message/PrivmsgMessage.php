@@ -34,16 +34,23 @@ class PrivmsgMessage extends GenericMessage
     /**
      * @return array [nick, user, host]
      */
-    public function getUser() {
+    public function getUser()
+    {
         $nick = "";
         $user = "";
         $host = "";
 
         $matches = array();
         if (preg_match('/^(?<nick>[^@!]+)(?:!(?<user>[^@]+)@(?<host>.+))?$/', $this->getPrefix(), $matches)) {
-            $nick = isset($matches['nick']) ? $matches['nick'] : '';
-            $user = isset($matches['user']) ? $matches['user'] : '';
-            $host = isset($matches['host']) ? $matches['host'] : '';
+            if (isset($matches['nick'])) {
+                $nick = $matches['nick'];
+            }
+            if (isset($matches['user'])) {
+                $user = $matches['user'];
+            }
+            if (isset($matches['host'])) {
+                $host = $matches['host'];
+            }
         }
 
         return array($nick, $user, $host);
