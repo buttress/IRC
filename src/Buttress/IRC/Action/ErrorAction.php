@@ -26,7 +26,7 @@ class ErrorAction implements ActionInterface
      */
     public function handleMessage(MessageInterface $message)
     {
-        $message->getConnection()->log(sprintf('Error: %s', implode(' ', $message->getParams())), LogLevel::DEBUG);
+        $message->getConnection()->log(sprintf('Error: %s', implode(' ', $message->getParams())), array(), LogLevel::DEBUG);
         $message->getConnection()->disconnect();
     }
 

@@ -30,4 +30,18 @@ class MessageFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($deconstructed, $factory->deconstructRaw($raw));
     }
 
+    public function testConstructPrivmsg()
+    {
+        $factory = new MessageFactory();
+
+        $this->assertInstanceOf('\Buttress\IRC\Message\PrivmsgMessage', $factory->make('privmsg'));
+    }
+
+    public function testConstructPing()
+    {
+        $factory = new MessageFactory();
+
+        $this->assertInstanceOf('\Buttress\IRC\Message\PingMessage', $factory->make('ping'));
+    }
+
 }

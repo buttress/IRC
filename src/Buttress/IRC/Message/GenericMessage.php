@@ -26,7 +26,7 @@ class GenericMessage implements MessageInterface
      */
     protected $connection;
 
-    function __construct($command, $prefix = "", $params = array(), $connection = null)
+    function __construct($command, $prefix = "", array $params = array(), $connection = null)
     {
         $this->command = $command;
         $this->connection = $connection;

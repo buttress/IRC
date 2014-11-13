@@ -46,6 +46,6 @@ interface ConnectionInterface extends LoggerAwareInterface
      * @param string $level
      * @return mixed
      */
-    public function log($message, $context = array(), $level = LogLevel::NOTICE);
+    public function log($message, array $context = array(), $level = LogLevel::NOTICE);
 
 }

@@ -57,7 +57,7 @@ class Connection implements ConnectionInterface
         return !!$this->connected;
     }
 
-    public function log($message, $context = array(), $level = LogLevel::NOTICE)
+    public function log($message, array $context = array(), $level = LogLevel::NOTICE)
     {
         if ($this->logger) {
             $this->logger->log($level, $message, $context);

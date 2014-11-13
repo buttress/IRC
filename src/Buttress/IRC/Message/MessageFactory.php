@@ -33,9 +33,9 @@ class MessageFactory
         if (substr($raw_message, 0, 1) == ':') {
             $prefix_end = strpos($raw_message, ' ');
             $prefix = substr($raw_message, 1, $prefix_end - 1);
-            $raw = substr($raw_message, $prefix_end + 1);
+            $raw = trim(substr($raw_message, $prefix_end + 1));
         } else {
-            $raw = $raw_message;
+            $raw = trim($raw_message);
         }
 
         $last_param = null;
@@ -75,6 +75,11 @@ class MessageFactory
         }
 
         return new GenericMessage($command, $prefix, $params, $connection);
+    }
+
+    protected function constructPrivmsg($command, $prefix, $params, $connection)
+    {
+        return new PrivmsgMessage($prefix, $params, $connection);
     }
 
     protected function constructPing($command, $prefix, $params, $connection)
