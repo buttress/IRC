@@ -23,6 +23,9 @@ interface ActionManagerInterface
      */
     public function handleConnect(ConnectionInterface $connection);
 
+    /**
+     * @return void
+     */
     public function handleRaw(ConnectionInterface $connection, $string);
 
 }

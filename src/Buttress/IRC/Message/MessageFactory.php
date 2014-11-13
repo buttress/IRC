@@ -26,6 +26,9 @@ class MessageFactory
         return $message;
     }
 
+    /**
+     * @param string $raw_message
+     */
     public function deconstructRaw($raw_message)
     {
         $prefix = "";
