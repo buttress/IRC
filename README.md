@@ -2,6 +2,7 @@
 [![](http://img.shields.io/packagist/v/buttress/irc.svg?style=flat)](https://packagist.org/packages/buttress/irc)
 [![](http://img.shields.io/packagist/dt/buttress/irc.svg?style=flat)](https://packagist.org/packages/buttress/irc)
 [![](http://img.shields.io/scrutinizer/g/buttress/irc.svg?style=flat)](http://scrutinizer-ci.com/g/Buttress/IRC/)
+[![](http://img.shields.io/coveralls/Buttress/IRC.svg?style=flat)](https://coveralls.io/r/Buttress/IRC)
 [![Circle CI](https://circleci.com/gh/Buttress/IRC/tree/master.png?style=badge)](https://circleci.com/gh/Buttress/IRC/tree/master)
 
 
