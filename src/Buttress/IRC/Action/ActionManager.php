@@ -60,7 +60,7 @@ class ActionManager implements ActionManagerInterface
     }
 
     /**
-     * @param $command
+     * @param string $command
      * @return ActionInterface[]
      */
     protected function getActions($command)

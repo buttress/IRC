@@ -99,6 +99,9 @@ class Connection implements ConnectionInterface
         $this->socket = $socket;
     }
 
+    /**
+     * @param string $raw
+     */
     public function handleRaw($raw)
     {
         $this->log($raw, array(), 'debug');
@@ -106,7 +109,7 @@ class Connection implements ConnectionInterface
     }
 
     /**
-     * @return bool
+     * @return boolean|null
      */
     public function disconnect()
     {
@@ -122,7 +125,7 @@ class Connection implements ConnectionInterface
 
     /**
      * @param MessageInterface $message
-     * @return bool
+     * @return boolean|null
      */
     public function sendMessage(MessageInterface $message)
     {
@@ -131,7 +134,7 @@ class Connection implements ConnectionInterface
 
     /**
      * @param string $raw
-     * @return bool
+     * @return boolean|null
      */
     public function sendRaw($raw)
     {

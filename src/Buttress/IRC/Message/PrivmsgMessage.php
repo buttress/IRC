@@ -23,6 +23,9 @@ class PrivmsgMessage extends GenericMessage
         return '';
     }
 
+    /**
+     * @return string
+     */
     public function getMessage()
     {
         if ($params = $this->getParams()) {
@@ -32,7 +35,7 @@ class PrivmsgMessage extends GenericMessage
     }
 
     /**
-     * @return array [nick, user, host]
+     * @return string[] [nick, user, host]
      */
     public function getUser()
     {
