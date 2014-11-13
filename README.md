@@ -11,11 +11,15 @@ Connect to IRC servers in record time
 ```php
 <?php
 use Buttress\IRC\Action\ActionManager;
+use Buttress\IRC\Action\ConnectionAction;
 use Buttress\IRC\Connection\Connection;
 use Buttress\IRC\Message\MessageFactory;
 
 $factory = new MessageFactory();
 $manager = new ActionManager($factory);
+
+$connect_action = new ConnectionAction('Buttress', '#buttress');
+$manager->add('CONNECT', $connection_action);
 
 $connection = new \Connection($manager, 'irc.freenode.org');
 $connection->connect();
