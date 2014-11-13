@@ -1,4 +1,7 @@
 test:
+  pre:
+    - mkdir build
+    - mkdir build/logs
   override:
     - phpunit --coverage-clover build/logs/clover.xml
   post:
