@@ -3,9 +3,12 @@ test:
     - mkdir build
     - mkdir build/logs
   override:
-    - phpunit --coverage-clover build/logs/clover.xml
+    - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
   post:
     - php vendor/bin/coveralls -v
 machine:
   php:
     version: 5.6.2
+dependencies:
+  pre:
+    - sed -i 's/^;//' ~/.phpenv/versions/$(phpenv global)/etc/conf.d/xdebug.ini
