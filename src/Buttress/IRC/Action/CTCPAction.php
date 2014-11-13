@@ -51,25 +51,34 @@ class CTCPAction implements ActionInterface
                 list($nick, $user, $host) = $message->getUser();
 
                 $message->getConnection()->log("CTCP \"{$type}\" from {$nick}!{$user}@{$host}", array($message));
-
-                $params = array();
-                switch ($type) {
-                    case 'VERSION':
-                        $params = array($nick, "\001VERSION {$this->version}\001");
-                        break;
-                    case 'PING':
-                        $params = array($nick, $message->getMessage());
-                        break;
-                    case 'TIME':
-                        $time = date(DATE_RFC1123);
-                        $params = array($nick, "\001TIME {$time}\001");
-                        break;
-                }
-                if ($params) {
-                    $response = new GenericMessage('notice', '', $params);
-                    $message->getConnection()->sendMessage($response);
-                }
+                $this->handleCTCP($message, $type, $nick);
             }
+        }
+    }
+
+    /**
+     * @param MessageInterface $message
+     * @param string           $type
+     * @param string           $nick
+     */
+    protected function handleCTCP($message, $type, $nick)
+    {
+        $params = array($nick);
+        switch ($type) {
+            case 'VERSION':
+                $params[] = "\001VERSION {$this->version}\001";
+                break;
+            case 'PING':
+                $params[] = $message->getMessage();
+                break;
+            case 'TIME':
+                $time = date(DATE_RFC1123);
+                $params[] = "\001TIME {$time}\001";
+                break;
+        }
+        if (count($params) > 1) {
+            $response = new GenericMessage('notice', '', $params);
+            $message->getConnection()->sendMessage($response);
         }
     }
 
