@@ -12,9 +12,6 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
     protected $factory;
     protected $manager;
     protected $connection;
-    protected $socket;
-
-    protected $open = false;
 
     public function testLog()
     {
@@ -28,7 +25,6 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
 
     public function testConnect()
     {
-        $this->open = false;
         $this->connection->connect();
 
         $this->assertFalse($this->connection->isConnected());
@@ -41,14 +37,14 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             function ($message) use (&$hit) {
                 $message->getConnection()->disconnect();
                 $hit = $message->getRaw();
-            }, function () {
+            }, function ($connection) {
+                fwrite($connection->getSocket(), 'TEST');
+                rewind($connection->getSocket());
             });
 
         $this->manager->add('*', $action);
-        fwrite($this->socket, 'TEST');
-        rewind($this->socket);
+
         $this->connection->connect();
-        $this->open = false;
 
         $this->assertEquals('TEST', $hit);
     }
@@ -60,14 +56,13 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             function ($message) use (&$hit) {
                 $hit = $message->getConnection()->connect();
                 $message->getConnection()->disconnect();
-            }, function () {
+            }, function ($connection) {
+                fwrite($connection->getSocket(), 'TEST');
+                rewind($connection->getSocket());
             });
 
         $this->manager->add('*', $action);
-        fwrite($this->socket, 'TEST');
-        rewind($this->socket);
         $this->connection->connect();
-        $this->open = false;
 
         $this->assertFalse($hit);
     }
@@ -78,17 +73,11 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->manager = new ActionManager($this->factory);
         $this->connection = new Connection($this->manager, '127.0.0.1', 80);
 
-        $this->socket = fopen('php://temp', 'rw');
-        $this->connection->setSocket($this->socket);
-
-        $this->open = true;
     }
 
     protected function tearDown()
     {
-        if ($this->open) {
-            fclose($this->socket);
-        }
+        $this->connection->disconnect();
     }
 
 }

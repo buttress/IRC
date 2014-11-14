@@ -68,7 +68,7 @@ class Connection implements ConnectionInterface
     {
         $socket = $this->getSocket();
         if (!$socket) {
-            $this->socket = $socket = pfsockopen($this->server, $this->port);
+            $this->socket = $socket = fsockopen($this->server, $this->port);
             $this->manager->handleConnect($this);
         }
 
