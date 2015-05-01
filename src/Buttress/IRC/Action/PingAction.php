@@ -6,13 +6,8 @@ use Buttress\IRC\Message\MessageInterface;
 use Buttress\IRC\Message\PingMessage;
 use Buttress\IRC\Message\PongMessage;
 
-class PingAction implements ActionInterface
+class PingAction extends AbstractAction
 {
-
-    public function handleConnect(ConnectionInterface $connection)
-    {
-        return;
-    }
 
     public function handleMessage(MessageInterface $message)
     {
