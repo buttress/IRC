@@ -70,4 +70,5 @@ class CTCPAction extends AbstractAction
             $message->getConnection()->sendMessage($response);
         }
     }
+
 }

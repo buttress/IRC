@@ -8,10 +8,12 @@ use Buttress\IRC\Message\PongMessage;
 
 class PingAction extends AbstractAction
 {
+
     public function handleMessage(MessageInterface $message)
     {
         if ($message instanceof PingMessage) {
             $message->getConnection()->sendMessage(new PongMessage($message));
         }
     }
+
 }

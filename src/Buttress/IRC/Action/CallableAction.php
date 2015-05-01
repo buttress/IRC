@@ -46,4 +46,5 @@ class CallableAction implements ActionInterface
             $callable();
         }
     }
+
 }

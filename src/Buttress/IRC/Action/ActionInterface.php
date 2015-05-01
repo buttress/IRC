@@ -29,4 +29,5 @@ interface ActionInterface
      * @return void
      */
     public function handleTick(ConnectionInterface $connection);
+
 }

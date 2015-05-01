@@ -7,6 +7,7 @@ use Psr\Log\LogLevel;
 
 class ErrorAction extends AbstractAction
 {
+
     /**
      * We need to disconnect, we encountered an error
      *
@@ -20,4 +21,5 @@ class ErrorAction extends AbstractAction
             LogLevel::DEBUG);
         $message->getConnection()->disconnect();
     }
+
 }

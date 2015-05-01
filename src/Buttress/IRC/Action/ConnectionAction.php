@@ -45,4 +45,5 @@ class ConnectionAction extends  AbstractAction
         $connection->sendMessage($user_message);
         $connection->sendMessage($join_message);
     }
+
 }
