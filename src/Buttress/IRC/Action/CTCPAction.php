@@ -82,4 +82,12 @@ class CTCPAction implements ActionInterface
         }
     }
 
+    /**
+     * Handle repeated function calls
+     * @return void
+     */
+    public function handleTick()
+    {
+        return;
+    }
 }

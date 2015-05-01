@@ -23,4 +23,9 @@ interface ActionInterface
      */
     public function handleMessage(MessageInterface $message);
 
+    /**
+     * Handle repeated function calls
+     * @return void
+     */
+    public function handleTick();
 }

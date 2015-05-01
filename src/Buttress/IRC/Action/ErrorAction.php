@@ -33,4 +33,12 @@ class ErrorAction implements ActionInterface
         $message->getConnection()->disconnect();
     }
 
+    /**
+     * Handle repeated function calls
+     * @return void
+     */
+    public function handleTick()
+    {
+        return;
+    }
 }

@@ -58,4 +58,12 @@ class ConnectionAction implements ActionInterface
         return;
     }
 
+    /**
+     * Handle repeated function calls
+     * @return void
+     */
+    public function handleTick()
+    {
+        return;
+    }
 }

@@ -70,6 +70,7 @@ class Connection implements ConnectionInterface
         if (!$socket) {
             $this->socket = $socket = fsockopen($this->server, $this->port);
             $this->manager->handleConnect($this);
+            socket_set_blocking($this->socket, false);
         }
 
         while ($this->isConnected() && !feof($socket)) {
@@ -77,6 +78,13 @@ class Connection implements ConnectionInterface
 
             if ($raw) {
                 $this->handleRaw($raw);
+            }
+
+            $this->handleTick();
+
+            if ($raw === false) {
+                // no data, slow down so we don't burn cpu cycles
+                usleep(10000);
             }
         }
 
@@ -106,6 +114,11 @@ class Connection implements ConnectionInterface
     {
         $this->log($raw, array(), 'debug');
         $this->manager->handleRaw($this, $raw);
+    }
+
+    public function handleTick()
+    {
+        $this->manager->handleTick($this);
     }
 
     /**

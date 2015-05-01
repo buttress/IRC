@@ -9,6 +9,7 @@ class CallableAction implements ActionInterface
 
     protected $messageCallable;
     protected $connectCallable;
+    protected $tickCallable;
 
     public function __construct(callable $message_callable, callable $connect_callable)
     {
@@ -32,4 +33,15 @@ class CallableAction implements ActionInterface
         }
     }
 
+    /**
+     * Handle repeated function calls
+     * @return void
+     */
+    public function handleTick()
+    {
+        $callable = $this->tickCallable;
+        if ($callable && is_callable($callable)) {
+            $callable();
+        }
+    }
 }
