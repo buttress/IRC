@@ -5,7 +5,7 @@ use Buttress\IRC\Connection\ConnectionInterface;
 use Buttress\IRC\Message\GenericMessage;
 use Buttress\IRC\Message\MessageInterface;
 
-class ConnectionAction implements ActionInterface
+class ConnectionAction extends  AbstractAction
 {
 
     protected $nick;
@@ -44,26 +44,5 @@ class ConnectionAction implements ActionInterface
         $connection->sendMessage($nick_message);
         $connection->sendMessage($user_message);
         $connection->sendMessage($join_message);
-
-    }
-
-    /**
-     * Handle messages
-     *
-     * @param MessageInterface $message
-     * @return void
-     */
-    public function handleMessage(MessageInterface $message)
-    {
-        return;
-    }
-
-    /**
-     * Handle repeated function calls
-     * @return void
-     */
-    public function handleTick()
-    {
-        return;
     }
 }

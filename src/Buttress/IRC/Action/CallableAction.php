@@ -35,9 +35,10 @@ class CallableAction implements ActionInterface
 
     /**
      * Handle repeated function calls
+     * @param ConnectionInterface $connection
      * @return void
      */
-    public function handleTick()
+    public function handleTick(ConnectionInterface $connection)
     {
         $callable = $this->tickCallable;
         if ($callable && is_callable($callable)) {

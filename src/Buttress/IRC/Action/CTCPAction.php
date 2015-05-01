@@ -13,7 +13,7 @@ use Buttress\IRC\Message\GenericMessage;
 use Buttress\IRC\Message\MessageInterface;
 use Buttress\IRC\Message\PrivmsgMessage;
 
-class CTCPAction implements ActionInterface
+class CTCPAction extends AbstractAction
 {
 
     protected $version;
@@ -21,17 +21,6 @@ class CTCPAction implements ActionInterface
     function __construct($version = 'buttress/irc v1.0.0')
     {
         $this->version = $version;
-    }
-
-    /**
-     * Handle Connection
-     *
-     * @param ConnectionInterface $connection
-     * @return mixed
-     */
-    public function handleConnect(ConnectionInterface $connection)
-    {
-        return;
     }
 
     /**
@@ -80,14 +69,5 @@ class CTCPAction implements ActionInterface
             $response = new GenericMessage('notice', '', $params);
             $message->getConnection()->sendMessage($response);
         }
-    }
-
-    /**
-     * Handle repeated function calls
-     * @return void
-     */
-    public function handleTick()
-    {
-        return;
     }
 }
