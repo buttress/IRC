@@ -11,10 +11,11 @@ class CallableAction implements ActionInterface
     protected $connectCallable;
     protected $tickCallable;
 
-    public function __construct(callable $message_callable, callable $connect_callable)
+    public function __construct(callable $message_callable, callable $connect_callable, callable $tick_callable)
     {
         $this->messageCallable = $message_callable;
         $this->connectCallable = $connect_callable;
+        $this->tickCallable = $tick_callable;
     }
 
     public function handleConnect(ConnectionInterface $connection)
