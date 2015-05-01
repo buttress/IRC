@@ -30,6 +30,10 @@ interface ActionManagerInterface
      */
     public function handleRaw(ConnectionInterface $connection, $string);
 
+    /**
+     * @param ConnectionInterface $connection
+     * @return void
+     */
     public function handleTick(ConnectionInterface $connection);
 
 }
