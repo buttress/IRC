@@ -67,7 +67,7 @@ class ActionManager implements ActionManagerInterface
     public function handleTick(ConnectionInterface $connection)
     {
         foreach ($this->getActions('TICK') as $action) {
-            $action->handleTick();
+            $action->handleTick($connection);
         }
     }
 
