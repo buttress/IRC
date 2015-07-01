@@ -21,8 +21,9 @@ class CallableActionTest extends \PHPUnit_Framework_TestCase
         $action = new CallableAction(
             function () use (&$hit) {
                 $hit = true;
-            }, function () {
-            });
+            },
+            null,
+            null);
 
         $action->handleMessage($mock);
         $this->assertTrue($hit);
@@ -34,12 +35,29 @@ class CallableActionTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('\Buttress\IRC\Connection\ConnectionInterface');
 
         $action = new CallableAction(
-            function () {
-            }, function () use (&$hit) {
+            null,
+            function () use (&$hit) {
+                $hit = true;
+            },
+            null);
+
+        $action->handleConnect($mock);
+        $this->assertTrue($hit);
+    }
+
+    public function testHandleTick()
+    {
+        $hit = false;
+        $mock = $this->getMock('\Buttress\IRC\Connection\ConnectionInterface');
+
+        $action = new CallableAction(
+            null,
+            null,
+            function () use (&$hit) {
                 $hit = true;
             });
 
-        $action->handleConnect($mock);
+        $action->handleTick($mock);
         $this->assertTrue($hit);
     }
 

@@ -40,7 +40,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             }, function ($connection) {
                 fwrite($connection->getSocket(), 'TEST');
                 rewind($connection->getSocket());
-            });
+            }, null);
 
         $this->manager->add('*', $action);
 
@@ -59,7 +59,7 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
             }, function ($connection) {
                 fwrite($connection->getSocket(), 'TEST');
                 rewind($connection->getSocket());
-            });
+            }, null);
 
         $this->manager->add('*', $action);
         $this->connection->connect();
@@ -72,7 +72,6 @@ class ConnectionTest extends \PHPUnit_Framework_TestCase
         $this->factory = new MessageFactory();
         $this->manager = new ActionManager($this->factory);
         $this->connection = new Connection($this->manager, '127.0.0.1', 80);
-
     }
 
     protected function tearDown()
