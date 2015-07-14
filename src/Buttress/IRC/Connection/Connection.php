@@ -54,7 +54,7 @@ class Connection implements ConnectionInterface
      */
     public function isConnected()
     {
-        return !!$this->connected;
+        return ($this->connected && is_resource($this->socket));
     }
 
     public function log($message, array $context = array(), $level = LogLevel::NOTICE)
